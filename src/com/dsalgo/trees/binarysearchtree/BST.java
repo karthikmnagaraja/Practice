@@ -1,5 +1,7 @@
-package com.dsalgo.trees;
+package com.dsalgo.trees.binarysearchtree;
 
+
+import com.dsalgo.trees.binarysearchtree.Node;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;

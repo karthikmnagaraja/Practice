@@ -1,4 +1,4 @@
-package com.dsalgo.trees;
+package com.dsalgo.trees.binarysearchtree;
 
 /**
  * @author Karthik Nagaraj

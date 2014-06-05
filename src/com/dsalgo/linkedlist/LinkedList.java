@@ -24,7 +24,7 @@ public class LinkedList<T extends Comparable<T>> implements Iterable<T> {
         for(T element:list){
             this.addFirst(element);
         }
-        this.reverse();
+        this.reverse(this.getHead());
     }
 
     public void SortedLinkedList(Collection<T> list){
@@ -114,9 +114,9 @@ public class LinkedList<T extends Comparable<T>> implements Iterable<T> {
         prev.next=cur.next;
     }
 
-    public LinkedList<T> reverse(){
+    public LinkedList<T> reverse(Node<T> headNode){
         LinkedList<T> list= new LinkedList<T>();
-        Node<T> temp= head;
+        Node<T> temp= headNode;
         while(temp!=null) {
             list.addFirst(temp.data);
             temp=temp.next;
@@ -124,11 +124,27 @@ public class LinkedList<T extends Comparable<T>> implements Iterable<T> {
         return list;
     }
 
-      private static class Node<T extends Comparable<T>>{
+      public static class Node<T extends Comparable<T>>{
         private T data;
         private Node<T> next;
 
-        public Node(T data){
+          public Node<T> getNext() {
+              return next;
+          }
+
+          public void setNext(Node<T> next) {
+              this.next = next;
+          }
+
+          public T getData() {
+              return data;
+          }
+
+          public void setData(T data) {
+              this.data = data;
+          }
+
+          public Node(T data){
             this.data=data;
             this.next=null;
         }
@@ -179,6 +195,35 @@ public class LinkedList<T extends Comparable<T>> implements Iterable<T> {
        return new LinkedListIterator();
     }
 
+    public Iterator<T> fastIterator(){
+        return new LinkedListFastIterator();
+    }
+
+
+    private class LinkedListFastIterator implements Iterator<T>{
+
+        private Node<T> nextNode;
+
+        private LinkedListFastIterator() {
+            this.nextNode = head;
+        }
+
+        public void remove(){
+            throw new UnsupportedOperationException();
+        }
+
+        public boolean hasNext(){
+            return nextNode.next.next!=null;
+        }
+
+        public T next(){
+            if(nextNode.next.next==null) throw new NoSuchElementException();
+            T result=nextNode.next.data;
+            nextNode=nextNode.next.next;
+            return result;
+        }
+
+    }
     private class LinkedListIterator implements Iterator<T>{
 
         private Node<T> nextNode;
@@ -201,6 +246,7 @@ public class LinkedList<T extends Comparable<T>> implements Iterable<T> {
             nextNode=nextNode.next;
             return result;
         }
+
 
     }
     public void print(){

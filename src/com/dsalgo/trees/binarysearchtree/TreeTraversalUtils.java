@@ -1,14 +1,26 @@
 package com.dsalgo.trees.binarysearchtree;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @author Karthik Nagaraj
  * @param <T>
  */
 public class TreeTraversalUtils<T extends Comparable<T>> {
+
+    public void printVerticalSum(Node<Integer> node, HashMap<Integer,Integer> map,int column){
+        if(node==null){
+            return;
+        }
+        printVerticalSum(node.left,map,column-1);
+        int count=0;
+        if(map.containsKey(column)){
+            count=map.get(column);
+        }
+        map.put(column,count+node.data);
+        printVerticalSum(node.right, map, column + 1);
+    }
+
 
 
     public void printLevelOrder(Node<T> root) {
@@ -103,14 +115,20 @@ public class TreeTraversalUtils<T extends Comparable<T>> {
 
         TreeTraversalUtils<Integer> utils = new TreeTraversalUtils<Integer>();
 
+
         Integer[] a = {5, 3, 2, 7, 4, 6, 8};
         BST<Integer> bst = new BST<Integer>();
         for (Integer n : a)
             bst.insert(n);
-        //utils.printLevelOrder(bst.getRoot());
+        utils.printLevelOrder(bst.getRoot());
 
-        utils.zigZagTraversal(bst.getRoot());
-
+        //utils.bfs(bst.getRoot());
+        //utils.zigZagTraversal(bst.getRoot());
+        HashMap<Integer,Integer>countMap=new HashMap<Integer, Integer>();
+        utils.printVerticalSum(bst.getRoot(),countMap,0);
+        for(Map.Entry<Integer,Integer> entry:countMap.entrySet()){
+            System.out.println(entry.getKey()+"------>"+entry.getValue());
+        }
     }
 
 }

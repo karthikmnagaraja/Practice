@@ -35,7 +35,7 @@ public class BST<T extends Comparable<T>> {
         if (data.compareTo(p.data) == 0) {
             return p;
         }
-        if (data.compareTo(p.data) < 0) {
+        if (data.compareTo(p.data) > 0) {
             p.right = toInsert(p.right, data);
         } else
             p.left = toInsert(p.left, data);

@@ -10,11 +10,12 @@ Basic DataStructure Implementation
 --Reverse
 
 -Binary Search Tree
---ZigZag Traversal
-  Vertical Sum
-  Level Order Traversal
-  BFS
-  Height of a tree
+---ZigZag Traversal
+---Vertical Sum
+---Level Order Traversal
+---BFS
+---Height of a tree
+---Find Distance of two nodes
 
 -Trie 
 

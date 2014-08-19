@@ -32,7 +32,6 @@ import java.util.Stack;
  5
  \
  6
-
  */
 public class FlattenBinaryTreetoLinkedList {
     public void flatten(TreeNode root) {

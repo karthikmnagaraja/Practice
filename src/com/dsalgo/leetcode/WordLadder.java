@@ -24,6 +24,8 @@ import java.util.LinkedList;
  As one shortest transformation is "hit" -> "hot" -> "dot" -> "dog" -> "cog",
  return its length 5
  */
+
+
 public class WordLadder {
 
         public int ladderLength(String start, String end, Set<String> dict) {

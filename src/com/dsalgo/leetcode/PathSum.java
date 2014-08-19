@@ -23,6 +23,7 @@ Given a binary tree and a sum, determine if the tree has a root-to-leaf path suc
 
         Have you been asked this question in an interview?
 */
+
 public class PathSum {
 
         public boolean hasPathSum(TreeNode root, int sum) {

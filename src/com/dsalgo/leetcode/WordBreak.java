@@ -39,4 +39,36 @@ public class WordBreak {
 
         return t[s.length()];
     }
+
+    public boolean wordBreakUsingDp(String s, Set<String> dict) {
+        if(s == null || s.length() == 0 || dict == null)
+            return true;
+
+        int length = s.length();
+
+        //dp[i] is true when the substring from i to the end can be partitioned
+        boolean[] dp = new boolean[length+1];
+
+        //empty string can be partitioned for sure
+        dp[0] = true;
+
+        //bottom up dp, start from the end
+        for(int i = 0;i<=length;i++){
+            for(int j = 0;j < i;j++){
+                String sub = s.substring(j,i);
+//                System.out.println(sub);
+                if(dict.contains(sub) == true&&dp[j]==true){
+                    dp[i]= true;
+                    break;  //break, just jump out current level of loop
+                }
+            }
+            if(dp[length]){
+                break;
+            }
+
+        }
+
+        return dp[length];
+    }
+
 }

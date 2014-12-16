@@ -1,45 +1,11 @@
-package com.dsalgo.leetcode.WildCardMatching;
+package com.dsalgo.leetcode;
 
 /**
  * @author KarthikMNagaraja.
  */
-public class Solution {
+public class WildCardMatching {
+
     public boolean isMatch(String s, String p) {
-        int slen=s.length();
-        int plen=p.length();
-        int i=0,j=0;
-        char[] sa=s.toCharArray();
-        char[] pa=p.toCharArray();
-        int star=-1;
-        while(slen>i){
-            System.out.println(i+" "+sa[i]+" "+j+" "+pa[j]);
-            if(sa[i]==pa[j]||pa[j]=='?'){
-                i++;j++;
-            }
-            else if(j<plen&&pa[j]=='*') {
-                star=j;
-
-                j++;
-                //continue;
-            }
-            else if(pa[star-1]==sa[i]){
-                    i++;
-            }else if(pa[star-1]!=sa[i]){
-                star+=1;
-            }
-            else{ return false;
-            }
-        }
-        while(j<plen&& pa[j]=='*'){
-            j++;
-
-        }
-
-        return j==plen&&i==slen;
-
-    }
-
-    public boolean isMatch2(String s, String p) {
         if (s == null || p == null) return false;
         if (s.equals(p)) return true;
         int m = s.length();
@@ -78,9 +44,9 @@ public class Solution {
         return posS == m && posP == n;
     }
     public static void main(String[] args) {
-        Solution s= new Solution();
-        System.out.println(s.isMatch2("aab", "a*b"));
-        System.out.println(s.isMatch2("b", "a*b"));
+        WildCardMatching s= new WildCardMatching();
+        System.out.println(s.isMatch("aab", "a*b"));
+        System.out.println(s.isMatch("b", "a*b"));
 
     }
 }

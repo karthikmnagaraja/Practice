@@ -1,4 +1,4 @@
-package com.dsalgo.leetcode.LettersOfCombinationsPhoneNumber;
+package com.dsalgo.leetcode;
 
 
 
@@ -8,10 +8,10 @@ import java.util.List;
 /**
  * @author KarthikMNagaraja.
  */
-public class Solution {
+public class LettersOfCombinationsPhoneNumber {
 
     public static void main(String[] args) {
-        Solution a= new Solution();
+        LettersOfCombinationsPhoneNumber a= new LettersOfCombinationsPhoneNumber();
         System.out.println(a.letterCombinations("23"));
         System.out.println(a.letterCombinations1("23"));
     }

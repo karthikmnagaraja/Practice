@@ -1,4 +1,4 @@
-package com.dsalgo.leetcode.flattenbinarytreelinkedlist;
+package com.dsalgo.leetcode;
 
 import com.dsalgo.leetcode.common.TreeNode;
 
@@ -7,7 +7,7 @@ import java.util.Stack;
 /**
  * @author KarthikMNagaraja.
  */
-public class Solution {
+public class FlattenBinaryTreeLinkedList {
 
     public void flatten(TreeNode node) {
         Stack<TreeNode> stack = new Stack<TreeNode>();

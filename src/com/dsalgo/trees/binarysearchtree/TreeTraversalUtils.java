@@ -2,26 +2,64 @@ package com.dsalgo.trees.binarysearchtree;
 
 import java.util.*;
 
+
 /**
- * @author Karthik Nagaraj
  * @param <T>
+ * @author Karthik Nagaraj
  */
 public class TreeTraversalUtils<T extends Comparable<T>> {
 
-    public void printVerticalSum(Node<Integer> node, HashMap<Integer,Integer> map,int column){
-        if(node==null){
-            return;
+    public static void main(String[] args) {
+
+        BST<String> tree = new BST<String>();
+        tree.insert("i am lazy");
+        TreeTraversalUtils<String> utilstr = new TreeTraversalUtils<String>();
+
+
+        TreeTraversalUtils<Integer> utils = new TreeTraversalUtils<Integer>();
+
+
+        Integer[] a = {5, 3, 2, 7, 4, 6, 8};
+        BST<Integer> bst = new BST<Integer>();
+        for (Integer n : a)
+            bst.insert(n);
+        utils.printLevelOrder(bst.getRoot());
+
+        //utils.bfs(bst.getRoot());
+        //utils.zigZagTraversal(bst.getRoot());
+        /*HashMap<Integer,Integer>countMap=new HashMap<Integer, Integer>();
+        utils.printVerticalSum(bst.getRoot(),countMap,0);
+        for(Map.Entry<Integer,Integer> entry:countMap.entrySet()){
+            System.out.println(entry.getKey()+"------>"+entry.getValue());
         }
-        printVerticalSum(node.left,map,column-1);
-        int count=0;
-        if(map.containsKey(column)){
-            count=map.get(column);
-        }
-        map.put(column,count+node.data);
-        printVerticalSum(node.right, map, column + 1);
+*/
+        //utils.printLeaves(bst.getRoot());
+        utils.printNodesfromDistanceK(bst.getRoot(),0);
+        utils.printNodesfromDistanceK(bst.getRoot(),1);
+        utils.printNodesfromDistanceK(bst.getRoot(),2);
+
+        Integer[] aa = {5, 3, 2, 7, 4, 6, 8};
+        BST<Integer> bst1 = new BST<Integer>();
+        for (Integer n : aa)
+            bst1.insert(n);
+
+        List<Integer> list= new TreeTraversalUtils<Integer>().inorderTraversal(bst1.getRoot());
+        System.out.println(list);
+
     }
 
-
+    public void printVerticalSum(Node<Integer> node, HashMap<Integer, Integer> map, int column) {
+        if (node == null) {
+            return;
+        }
+        printVerticalSum(node.left, map, column - 1);
+        int count = 0;
+        if (map.containsKey(column)) {
+            count = map.get(column);
+        }
+        map.put(column, count + node.data);
+        printVerticalSum(node.right, map, column + 1);
+    }
 
     public void printLevelOrder(Node<T> root) {
         Queue<Node<T>> queue = new LinkedList<Node<T>>();
@@ -96,39 +134,78 @@ public class TreeTraversalUtils<T extends Comparable<T>> {
 
 
             }
-            if(currentLevel.isEmpty()){
+            if (currentLevel.isEmpty()) {
                 System.out.println();
-                isLeftToRight=!isLeftToRight;
-                Stack<Node<T>> temp=currentLevel;
-                currentLevel=nextLevel;
-                nextLevel=temp;
+                isLeftToRight = !isLeftToRight;
+                Stack<Node<T>> temp = currentLevel;
+                currentLevel = nextLevel;
+                nextLevel = temp;
             }
         }
     }
 
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        BST<String> tree = new BST<String>();
-        tree.insert("i am lazy");
-        TreeTraversalUtils<String> utilstr = new TreeTraversalUtils<String>();
+    public void printLeaves(Node<T> node) {
+        if (node != null) {
 
+            printLeaves(node.left);
 
-        TreeTraversalUtils<Integer> utils = new TreeTraversalUtils<Integer>();
-
-
-        Integer[] a = {5, 3, 2, 7, 4, 6, 8};
-        BST<Integer> bst = new BST<Integer>();
-        for (Integer n : a)
-            bst.insert(n);
-        utils.printLevelOrder(bst.getRoot());
-
-        //utils.bfs(bst.getRoot());
-        //utils.zigZagTraversal(bst.getRoot());
-        HashMap<Integer,Integer>countMap=new HashMap<Integer, Integer>();
-        utils.printVerticalSum(bst.getRoot(),countMap,0);
-        for(Map.Entry<Integer,Integer> entry:countMap.entrySet()){
-            System.out.println(entry.getKey()+"------>"+entry.getValue());
+            if ((node.left == null) && (node.right == null)) {
+                System.out.println(node.data);
+            }
+            printLeaves(node.right);
         }
+    }
+
+    public void printNodesfromDistanceK(Node<T> root, int k) {
+        Node<T> currentNode = root;
+        Queue<Node<T>> queue = new LinkedList<Node<T>>();
+        queue.add(currentNode);
+        int nodesInCurrentLevel = 1, nodesInNextLevel = 0;
+        int countLevel = 0;
+        while (!queue.isEmpty()) {
+            currentNode = queue.remove();
+            --nodesInCurrentLevel;
+            if (countLevel == k) {
+                System.out.print(currentNode.data+"-> ");
+            }
+            if (currentNode.left != null) {
+                nodesInNextLevel++;
+                queue.add(currentNode.left);
+            }
+
+
+            if (currentNode.right != null) {
+                nodesInNextLevel++;
+                queue.add(currentNode.right);
+            }
+
+            if (nodesInCurrentLevel == 0) {
+                nodesInCurrentLevel = nodesInNextLevel;
+                nodesInNextLevel = 0;
+                countLevel++;
+            }
+        }
+
+        System.out.println();
+    }
+
+
+    public List<Integer> inorderTraversal(Node<Integer> root){
+        Node<Integer> node= root;
+        Stack<Node> stack= new Stack<Node>();
+        List<Integer> list= new ArrayList<Integer>(0);
+        while(!stack.isEmpty()||node!=null){
+            if(node!=null)
+            {
+                stack.push(node);
+                node=node.left;
+            }else{
+                node=stack.pop();
+                list.add(node.data);
+                node=node.right;
+            }
+        }
+        return list;
     }
 
 }

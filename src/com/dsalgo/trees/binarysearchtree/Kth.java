@@ -1,9 +1,7 @@
 package com.dsalgo.trees.binarysearchtree;
 
 import com.dsalgo.stack.Stack;
-import com.dsalgo.trees.common.Node;
-import com.dsalgo.trees.common.TreeTraversalUtils;
-
+import com.dsalgo.trees.binarysearchtree.*;
 /**
  * @author KarthikMNagaraja.
  */

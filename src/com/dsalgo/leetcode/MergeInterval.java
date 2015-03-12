@@ -43,7 +43,7 @@ public class MergeInterval {
                 result.add(temp);
                 temp=in;
             }else {
-                temp.end=Math.max(in.end,temp.end);
+                temp=new Interval(Math.min(in.start,temp.start),Math.max(in.end,temp.end));
             }
         }
         result.add(temp);

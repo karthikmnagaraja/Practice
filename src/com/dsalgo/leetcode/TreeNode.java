@@ -1,4 +1,4 @@
-package com.dsalgo.leetcode.common;
+package com.dsalgo.leetcode;
 
 /**
  * @author KarthikMNagaraja.

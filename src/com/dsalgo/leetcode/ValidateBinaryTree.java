@@ -1,5 +1,4 @@
 package com.dsalgo.leetcode;
-import com.dsalgo.leetcode.common.TreeNode;
 
 /**
  * @author KarthikMNagaraja.
